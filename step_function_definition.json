@@ -1,0 +1,21 @@
+{
+  "StartAt": "FilterVolumes",
+  "States": {
+    "FilterVolumes": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-south-1:853542655362:function:FilterVolumesLambda",
+      "Next": "ConvertVolumes"
+    },
+    "ConvertVolumes": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-south-1:853542655362:function:VolumeConverter",
+      "Next": "LogAndNotify"
+    },
+    "LogAndNotify": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:ap-south-1:853542655362:function:LogAndNotifyLambda",
+      "End": true
+    }
+  }
+}
+
